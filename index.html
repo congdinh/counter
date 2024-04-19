@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>Đếm Túc Số</title>
+    <meta name="description" content="Counter" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:title" content="Counter" />
+    <meta property="og:type" content="Number" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.26.0/build/global/luxon.min.js"></script>
+
+    <!-- Place favicon.ico in the root directory -->
+    <meta name="theme-color" content="#fafafa" />
+    <style>
+      *,
+      *::before,
+      *::after {
+        /* margin: 0;
+        padding: 0; */
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+        background-image: linear-gradient(to bottom, #022c5d, #83c1be);
+      }
+
+      moon,
+      land,
+      house,
+      waterfall,
+      moon::before,
+      moon::after,
+      land::before,
+      land::after,
+      house::before,
+      house::after,
+      waterfall::before,
+      waterfall::after {
+        display: block;
+        position: absolute;
+      }
+
+      moon::before,
+      moon::after,
+      land::before,
+      land::after,
+      house::before,
+      house::after,
+      waterfall::before,
+      waterfall::after {
+        content: "";
+      }
+
+      moon {
+        top: 20vh;
+        left: calc(50vw - 10vmin);
+        z-index: -1;
+        background-color: #fffbde;
+        box-shadow: 0 0 4vmin 0 #fffbde inset, -3vmin -3vmin 0 0 #eae7d2 inset,
+          0 0 0 10vmin rgba(255, 255, 255, 0.05),
+          0 0 0 20vmin rgba(255, 255, 255, 0.05),
+          0 0 0 40vmin rgba(255, 255, 255, 0.05),
+          0 0 0 70vmin rgba(255, 255, 255, 0.05);
+      }
+      moon,
+      moon::before,
+      moon::after {
+        border-radius: 50%;
+      }
+      moon,
+      moon::before {
+        width: 20vmin;
+        height: 20vmin;
+      }
+      moon::before {
+        z-index: -1;
+        box-shadow: 0 0 0 0.5vmin rgba(2, 44, 93, 0.2),
+          0 0 2vmin 2vmin rgba(255, 255, 255, 0.6);
+        -webkit-animation: moon 2s ease-in-out infinite alternate;
+        animation: moon 2s ease-in-out infinite alternate;
+      }
+      moon::after {
+        width: 4vmin;
+        height: 4vmin;
+        box-shadow: 5vmin 5vmin 0 1vmin #e1dcbe, 13vmin 13vmin 0 -1vmin #e1dcbe,
+          10vmin 7vmin 0 -0.5vmin #e1dcbe, 9vmin 15vmin 0 -0.5vmin #e1dcbe,
+          6vmin 14vmin 0 -1vmin #e1dcbe;
+      }
+
+      waterfall {
+        width: 24vmin;
+        height: 38vh;
+        top: 62vh;
+        left: calc(50vw - 12vmin);
+        background-image: linear-gradient(to bottom, #005c99, #c4def3);
+        box-shadow: 0 0.5vmin 0 0 rgba(255, 251, 222, 0.7) inset;
+      }
+      waterfall,
+      waterfall::before {
+        border-radius: 4vw 4vw 0 0/12vh 12vh 0 0;
+      }
+      waterfall::before {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-image: radial-gradient(
+          ellipse at top,
+          rgba(196, 222, 243, 0) 40%,
+          rgba(196, 222, 243, 0.5) 70%,
+          #c4def3 70%,
+          rgba(196, 222, 243, 0) 70%
+        );
+        background-size: 200% 8vh;
+        background-position: 50% 0;
+        -webkit-animation: waterfall 0.7s linear infinite;
+        animation: waterfall 0.7s linear infinite;
+      }
+      waterfall::after {
+        width: 6vmin;
+        height: 6vmin;
+        top: calc(38vh - 3vmin);
+        left: -10vmin;
+        border-radius: 50%;
+        background-color: transparent;
+        box-shadow: 8vmin 0 0 0 white, 14vmin 0 0 2vmin white,
+          20vmin 0 0 -1vmin white, 26vmin 0 0 1.5vmin white,
+          32vmin 0 0 -0.5vmin white;
+        -webkit-animation: splash 0.6s ease-in-out infinite alternate;
+        animation: splash 0.6s ease-in-out infinite alternate;
+      }
+
+      land {
+        width: 60vw;
+        height: 38vh;
+        top: 62vh;
+        left: 20vw;
+        border-radius: 8vw 12vw 0 0/14vh 18vh 0 0;
+        background-color: #001e2a;
+        box-shadow: 0 1vmin 0 0 #02456b inset;
+      }
+      land::before,
+      land::after {
+        width: 20vmin;
+        height: 18vmin;
+        z-index: -1;
+        transform: rotate(45deg);
+        background-color: #001e2a;
+        border-radius: 4vmin 0;
+        box-shadow: 0 1vmin 0 0 #02456b inset;
+      }
+      land::before {
+        top: -6vmin;
+        left: 12vmin;
+      }
+      land::after {
+        top: -8vmin;
+        left: 22vmin;
+      }
+
+      house {
+        width: 12vw;
+        height: 12vh;
+        top: 50vh;
+        left: 55vw;
+        background-color: #001e2a;
+      }
+      house::before {
+        width: 10vw;
+        height: 10vw;
+        top: -5vw;
+        left: 0.9vw;
+        z-index: -1;
+        transform: rotate(45deg);
+        background: #001e2a;
+        border-radius: 1vmin;
+        box-shadow: 1vmin 0 0 0 #02456b inset;
+      }
+      house::after {
+        width: 4vmin;
+        height: 4vmin;
+        top: 3vh;
+        left: calc(50% - 2vmin);
+        background-color: #fffbde;
+        box-shadow: 0 0 5vmin #fffbde, 0 0 3vmin #fffbde inset;
+        background-image: linear-gradient(
+            to right,
+            transparent calc(50% - 0.5vmin),
+            #001e2a calc(50% - 0.5vmin),
+            #001e2a calc(50% + 0.5vmin),
+            transparent calc(50% + 0.5vmin)
+          ),
+          linear-gradient(
+            to bottom,
+            transparent calc(50% - 0.5vmin),
+            #001e2a calc(50% - 0.5vmin),
+            #001e2a calc(50% + 0.5vmin),
+            transparent calc(50% + 0.5vmin)
+          );
+        -webkit-animation: window 1.2s ease-in-out alternate infinite;
+        animation: window 1.2s ease-in-out alternate infinite;
+      }
+
+      @-webkit-keyframes moon {
+        to {
+          box-shadow: 0 0 0 0.5vmin rgba(2, 44, 93, 0.3), 0 0 7vmin 2vmin white;
+        }
+      }
+
+      @keyframes moon {
+        to {
+          box-shadow: 0 0 0 0.5vmin rgba(2, 44, 93, 0.3), 0 0 7vmin 2vmin white;
+        }
+      }
+      @-webkit-keyframes waterfall {
+        to {
+          background-position: 50% 8vh;
+        }
+      }
+      @keyframes waterfall {
+        to {
+          background-position: 50% 8vh;
+        }
+      }
+      @-webkit-keyframes splash {
+        to {
+          box-shadow: 8vmin 0 0 2vmin white, 14vmin 0 0 0.5vmin white,
+            20vmin 0 0 3vmin white, 26vmin 0 0 0vmin white,
+            32vmin 0 0 1vmin white;
+        }
+      }
+      @keyframes splash {
+        to {
+          box-shadow: 8vmin 0 0 2vmin white, 14vmin 0 0 0.5vmin white,
+            20vmin 0 0 3vmin white, 26vmin 0 0 0vmin white,
+            32vmin 0 0 1vmin white;
+        }
+      }
+      @-webkit-keyframes window {
+        to {
+          box-shadow: 0 0 2vmin white, 0 0 3vmin white inset;
+        }
+      }
+      @keyframes window {
+        to {
+          box-shadow: 0 0 2vmin white, 0 0 3vmin white inset;
+        }
+      }
+    </style>
+    <style>
+      @import "https://fonts.googleapis.com/css?family=Nunito:200,300,400,700";
+      p {
+        color: #fff;
+        letter-spacing: 1px;
+        font-size: 10px;
+        line-height: 5px;
+        font-weight: 200;
+      }
+
+      /* Tooltip text */
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+      }
+
+      /* Show the tooltip text when you mouse over the tooltip container */
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
+      }
+      .tooltip:active .tooltiptext {
+        visibility: visible;
+      }
+      p.name {
+        font-size: 12px;
+        line-height: 10px;
+        font-weight: 400;
+      }
+
+      h1.name {
+        color: #fff;
+      }
+      h1.name:active {
+        color: #4e2bcc;
+      }
+
+      div.counts {
+        font-size: 5em;
+        /* margin-top: 25px; */
+        /* color: #4e2bcc; */
+        color: #fff;
+        font-weight: bold;
+      }
+
+      p.datetime {
+        line-height: 10px;
+        font-weight: 400;
+      }
+
+      ul > li {
+        list-style: none;
+      }
+
+      h3 {
+        color: #fff;
+        letter-spacing: 1px;
+        line-height: 10px;
+      }
+
+      .wrapper {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        text-align: center;
+        font-family: nunito;
+        left: 0;
+        right: 0;
+        top: 20%;
+      }
+      .wrapper .card-wrapper {
+        perspective: 1000px;
+        display: inline-block;
+        /* margin: 20px 60px; */
+      }
+      .wrapper .card-wrapper .card-group {
+        width: 300px;
+        position: relative;
+        margin: 0 auto;
+        height: 300px;
+        box-shadow: 0 20px 80px 0 rgba(48, 25, 131, 0.4),
+          0 0 1px 0 rgba(48, 25, 131, 0.25);
+        border-radius: 10px;
+        transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+          opacity 0.35s ease-in-out;
+      }
+      .wrapper .card-wrapper .card-group.reduce {
+        height: 270px;
+      }
+      .wrapper .card-wrapper .card-group.reduce .card-front {
+        height: 270px;
+      }
+      .wrapper .card-wrapper .card-group.in {
+        transform: translateY(100px) translateZ(200px) rotateX(40deg) scale(0.9);
+      }
+      .wrapper .card-wrapper .card-group.on {
+        transform: translateY(100px) rotateX(40deg) scale(0.9);
+      }
+      .wrapper .card-wrapper .card-group .card-front {
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        width: 300px;
+        position: absolute;
+        top: 0;
+        height: 300px;
+        margin: 0 auto;
+        cursor: pointer;
+        background: linear-gradient(-35deg, #4e2bcc 3%, #b620e0 100%);
+        border-radius: 10px;
+      }
+      .wrapper .card-wrapper .card-group .card-front.red {
+        background: linear-gradient(-35deg, #9119b3 0%, #e64c4c 88%);
+      }
+      .wrapper .card-wrapper .card-group .card-front.blue {
+        background: linear-gradient(-35deg, #289dcc 3%, #815eff 94%);
+      }
+      .wrapper .card-wrapper .card-group .card-front.on {
+        transform: translate(0, -70px) rotateX(40deg) scale(1.125)
+          rotateX(-20deg);
+      }
+      .wrapper .card-wrapper .card-group .card-front .tools {
+        width: 300px;
+        height: 50px;
+        box-sizing: border-box;
+        padding: 20px;
+      }
+      .wrapper .card-wrapper .card-group .card-front .tools span {
+        font-size: 24px;
+        color: #fff;
+      }
+      .wrapper .card-wrapper .card-group .card-front .tools .tool {
+        border-radius: 10px;
+        height: 30px;
+        display: inline;
+      }
+      .wrapper .card-wrapper .card-group .card-front .tools .tool.onshadow {
+        box-shadow: 0px 35px 15px 0 rgba(48, 25, 131, 0.2);
+      }
+      .wrapper
+        .card-wrapper
+        .card-group
+        .card-front
+        .tools
+        .tool.onshadow.gear {
+        background: transparent;
+        transform: translateY(-13px);
+      }
+      .wrapper
+        .card-wrapper
+        .card-group
+        .card-front
+        .tools
+        .tool.onshadow.edit {
+        transform: translateY(-5px);
+        box-shadow: -3px 35px 15px 0 rgba(48, 25, 131, 0.2);
+      }
+      .wrapper .card-wrapper .card-group .card-front .tools .tool.gear {
+        float: left;
+        text-align: left;
+      }
+      .wrapper .card-wrapper .card-group .card-front .tools .tool.edit {
+        float: right;
+        text-align: right;
+      }
+      .wrapper .card-wrapper .card-group .card-front .profile {
+        width: 100%;
+      }
+      .wrapper
+        .card-wrapper
+        .card-group
+        .card-front
+        .profile.onshadow
+        .p-picture-wrapper {
+        transform: translateY(-35px);
+        box-shadow: 0px 65px 20px 0 rgba(48, 25, 131, 0.2);
+      }
+      .wrapper
+        .card-wrapper
+        .card-group
+        .card-front
+        .profile
+        .p-picture-wrapper {
+        width: 100px;
+        height: 100px;
+        background: #fff;
+        border: 3px solid #fff;
+        overflow: hidden;
+        border-radius: 100%;
+        position: relative;
+        margin: 0 auto;
+        transform: translateY(-10px);
+      }
+      .wrapper
+        .card-wrapper
+        .card-group
+        .card-front
+        .profile
+        .p-picture-wrapper.rounded {
+        border-radius: 20px;
+      }
+      .wrapper
+        .card-wrapper
+        .card-group
+        .card-front
+        .profile
+        .p-picture-wrapper
+        .p-picture {
+        width: 100%;
+        position: relative;
+        top: -10px;
+      }
+      .wrapper .card-wrapper .card-group .card-front .profile .p-info {
+        text-align: center;
+        padding: 0px 0px;
+      }
+      .wrapper .card-wrapper .card-group .card-front .profile .p-info.m-top {
+        margin-top: 10px !important;
+      }
+      .wrapper
+        .card-wrapper
+        .card-group
+        .card-front
+        .profile
+        .p-info.onshadow
+        p {
+        text-shadow: 0 12px 15px rgba(48, 25, 131, 0.75);
+      }
+      .wrapper .card-wrapper .card-group .card-front .profile .p-info p {
+        display: inline;
+        line-height: 0px;
+      }
+      .wrapper
+        .card-wrapper
+        .card-group
+        .card-front
+        .p-social-info.onshadow
+        ul
+        li
+        h3,
+      .wrapper
+        .card-wrapper
+        .card-group
+        .card-front
+        .p-social-info.onshadow
+        ul
+        li
+        p,
+      .wrapper
+        .card-wrapper
+        .card-group
+        .card-front
+        .p-social-info.onshadow
+        ul
+        li
+        i {
+        text-shadow: 0 28px 15px rgba(48, 25, 131, 0.75);
+      }
+      .wrapper .card-wrapper .card-group .card-front .p-social-info ul {
+        list-style-type: none;
+        margin: 10px auto 0px auto;
+        text-align: center;
+        padding: 0px;
+      }
+      .wrapper .card-wrapper .card-group .card-front .p-social-info ul.social {
+        margin: 30px auto 0px auto;
+      }
+      .wrapper
+        .card-wrapper
+        .card-group
+        .card-front
+        .p-social-info
+        ul.social
+        li {
+        padding: 0px 30px;
+      }
+      .wrapper .card-wrapper .card-group .card-front .p-social-info ul li {
+        text-align: center;
+        display: inline-block;
+        padding: 0px 20px;
+        background: transparent;
+      }
+      .wrapper .card-wrapper .card-group .card-front .p-social-info ul li i {
+        color: #fff;
+        background: transparent;
+        font-size: 24px;
+      }
+
+      .hover.down {
+        animation: symbolhovering 2s infinite alternate;
+      }
+
+      .bounce {
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .hover-first {
+        transition: all ease 2s;
+      }
+      .hover-first.act {
+        animation: hoverdown 4s infinite alternate;
+      }
+
+      .hover-second {
+        transition: all ease 2s;
+      }
+      .hover-second.act {
+        animation: hovertop 4s infinite alternate;
+      }
+
+      @keyframes symbolhovering {
+        0% {
+          transform: translate(0, -5px) scale(1);
+        }
+        100% {
+          transform: translate(0, -10px) scale(1);
+        }
+      }
+      @keyframes hovertop {
+        0% {
+          transform: translate(0, 0px) scale(1);
+        }
+        100% {
+          transform: translate(0, 10px) scale(1);
+        }
+      }
+      @keyframes hoverdown {
+        0% {
+          transform: translate(0, 0px) scale(1);
+        }
+        100% {
+          transform: translate(0, -10px) scale(1);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <moon></moon>
+    <land></land>
+    <house></house>
+    <waterfall></waterfall>
+    <!-- <div class="container">
+      <p><a href="#" class="reset">Reset</a></p>
+    </div> -->
+    <div class="wrapper">
+      <div class="card-wrapper">
+        <div class="card-group">
+          <div class="c-group-wrapper bounce hover">
+            <div class="card-front">
+              <div class="tools hover-first">
+                <div class="tool bounce gear tooltip">
+                  <span class="fa fa-edit reset" onclick="down()"></span>
+                  <span class="tooltiptext">Xoá túc số của hôm nay</span>
+                </div>
+                <div class="tool bounce edit">
+                  <a href="./history.html"
+                    ><span class="fa fa-signal"></span
+                  ></a>
+                </div>
+              </div>
+              <div class="profile bounce">
+                <div class="hover-second">
+                  <!-- <div class="p-picture-wrapper bounce"> -->
+                  <div class="counts">0</div>
+                  <!-- <div class="btn"><i class="fa fa-plus"></i></div> -->
+                  <!-- </div> -->
+                </div>
+                <div class="p-info m-top bounce hover-first">
+                  <h1 class="name btn click">CLICK</h1>
+                </div>
+                <div class="p-info bounce hover-first">
+                  <p>👋 Chúc một ngày tốt lành!</p>
+                  <br />
+                  <p class="datetime"></p>
+                </div>
+              </div>
+            </div>
+            <!-- 
+            <div class="p-social-info bounce">
+              <ul class="hover-second social">
+                <li>
+                  <i class="bounce fa fa-dribbble"></i>
+                </li>
+                <li>
+                  <i class="bounce fa fa-facebook"></i>
+                </li>
+                <li>
+                  <i class="bounce fa fa-instagram"></i>
+                </li>
+              </ul>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const cards = document.querySelectorAll(".card-group");
+
+      function down() {
+        const cards = document.querySelectorAll(".card-group");
+        const card = cards[0];
+        const cardFront = card.querySelector(".card-front");
+        const bounces = card.querySelectorAll(".bounce");
+        const hoverfirsts = card.querySelectorAll(".hover-first"),
+          hoverseconds = card.querySelectorAll(".hover-second");
+        const hover = card.querySelector(".hover");
+        let that = card;
+        if (card.classList.contains("in")) {
+          hover.classList.remove("down");
+          cardFront.classList.remove("on");
+          setTimeout(function (e) {
+            bounces.forEach(function (bounce) {
+              bounce.classList.remove("onshadow");
+            });
+            hoverfirsts.forEach(function (hover) {
+              that.classList.remove("in");
+              hover.classList.remove("act");
+            });
+            hoverseconds.forEach(function (hover) {
+              hover.classList.remove("act");
+            });
+          }, 150);
+        }
+      }
+
+      cards.forEach(function (card) {
+        card.addEventListener("click", function (e) {
+          const cardFront = this.querySelector(".card-front");
+          const bounces = this.querySelectorAll(".bounce");
+          const hoverfirsts = this.querySelectorAll(".hover-first"),
+            hoverseconds = this.querySelectorAll(".hover-second");
+          const hover = this.querySelector(".hover");
+          let that = this;
+          if (!this.classList.contains("in")) {
+            this.className += " in";
+            setTimeout(function (e) {
+              cardFront.className += " on";
+            }, 50);
+            setTimeout(function (e) {
+              bounces.forEach(function (bounce) {
+                bounce.className += " onshadow";
+              });
+              hoverfirsts.forEach(function (hover) {
+                hover.className += " act";
+              });
+              hoverseconds.forEach(function (hover) {
+                hover.className += " act";
+              });
+              hover.className += " down";
+            }, 100);
+          }
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        var counts = 0;
+        var mytime = localStorage.getItem("mytime");
+        console.log("mytime: ", mytime);
+        var history = (mytime && JSON.parse(mytime)) || {};
+        console.log("history: ", history);
+        var today = luxon.DateTime.now().toFormat("yyyy-MM-dd");
+
+        if (history) {
+          for (const [key, value] of Object.entries(history)) {
+            if (key === today) {
+              counts = value;
+              $(".counts").text(counts);
+            }
+            console.log(`${key}: ${value}`);
+          }
+        }
+
+        $(".click").click(function () {
+          counts += +1;
+          var today = luxon.DateTime.now().toFormat("yyyy-MM-dd");
+          history[today] = counts;
+          localStorage.setItem("mytime", JSON.stringify(history));
+          $(".counts").text(counts);
+        });
+
+        $(".reset").click(function (e) {
+          var r = confirm("Bạn có muốn xoá túc số ngày hôm nay?");
+          if (r == false) return;
+          counts = 0;
+          var today = luxon.DateTime.now().toFormat("yyyy-MM-dd");
+          history[today] = counts;
+          localStorage.setItem("mytime", JSON.stringify(history));
+          $(".counts").text(counts);
+        });
+      });
+    </script>
+    <script>
+      function show() {
+        var datenow = luxon.DateTime.now().toFormat("yyyy-MM-dd HH:mm:ss");
+        document.getElementsByClassName("datetime")[0].innerHTML = datenow;
+        setTimeout("show()", 1000);
+      }
+      show();
+    </script>
+  </body>
+</html>
