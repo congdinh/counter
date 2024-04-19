@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lịch Sử Túc Số</title>
+    <meta name="description" content="History" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:title" content="History" />
+    <meta property="og:type" content="Number" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Place favicon.ico in the root directory -->
+    <meta name="theme-color" content="#fafafa" />
+    <style>
+      @import "https://fonts.googleapis.com/css?family=Nunito:200,300,400,700";
+      *,
+      *::before,
+      *::after {
+        /* margin: 0;
+        padding: 0; */
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+        background-image: linear-gradient(to bottom, #022c5d, #83c1be);
+      }
+
+      moon,
+      land,
+      house,
+      waterfall,
+      moon::before,
+      moon::after,
+      land::before,
+      land::after,
+      house::before,
+      house::after,
+      waterfall::before,
+      waterfall::after {
+        display: block;
+        position: absolute;
+      }
+
+      moon::before,
+      moon::after,
+      land::before,
+      land::after,
+      house::before,
+      house::after,
+      waterfall::before,
+      waterfall::after {
+        content: "";
+      }
+
+      moon {
+        top: 20vh;
+        left: calc(50vw - 10vmin);
+        z-index: -1;
+        background-color: #fffbde;
+        box-shadow: 0 0 4vmin 0 #fffbde inset, -3vmin -3vmin 0 0 #eae7d2 inset,
+          0 0 0 10vmin rgba(255, 255, 255, 0.05),
+          0 0 0 20vmin rgba(255, 255, 255, 0.05),
+          0 0 0 40vmin rgba(255, 255, 255, 0.05),
+          0 0 0 70vmin rgba(255, 255, 255, 0.05);
+      }
+      moon,
+      moon::before,
+      moon::after {
+        border-radius: 50%;
+      }
+      moon,
+      moon::before {
+        width: 20vmin;
+        height: 20vmin;
+      }
+      moon::before {
+        z-index: -1;
+        box-shadow: 0 0 0 0.5vmin rgba(2, 44, 93, 0.2),
+          0 0 2vmin 2vmin rgba(255, 255, 255, 0.6);
+        -webkit-animation: moon 2s ease-in-out infinite alternate;
+        animation: moon 2s ease-in-out infinite alternate;
+      }
+      moon::after {
+        width: 4vmin;
+        height: 4vmin;
+        box-shadow: 5vmin 5vmin 0 1vmin #e1dcbe, 13vmin 13vmin 0 -1vmin #e1dcbe,
+          10vmin 7vmin 0 -0.5vmin #e1dcbe, 9vmin 15vmin 0 -0.5vmin #e1dcbe,
+          6vmin 14vmin 0 -1vmin #e1dcbe;
+      }
+
+      waterfall {
+        width: 24vmin;
+        height: 38vh;
+        top: 62vh;
+        left: calc(50vw - 12vmin);
+        background-image: linear-gradient(to bottom, #005c99, #c4def3);
+        box-shadow: 0 0.5vmin 0 0 rgba(255, 251, 222, 0.7) inset;
+      }
+      waterfall,
+      waterfall::before {
+        border-radius: 4vw 4vw 0 0/12vh 12vh 0 0;
+      }
+      waterfall::before {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-image: radial-gradient(
+          ellipse at top,
+          rgba(196, 222, 243, 0) 40%,
+          rgba(196, 222, 243, 0.5) 70%,
+          #c4def3 70%,
+          rgba(196, 222, 243, 0) 70%
+        );
+        background-size: 200% 8vh;
+        background-position: 50% 0;
+        -webkit-animation: waterfall 0.7s linear infinite;
+        animation: waterfall 0.7s linear infinite;
+      }
+      waterfall::after {
+        width: 6vmin;
+        height: 6vmin;
+        top: calc(38vh - 3vmin);
+        left: -10vmin;
+        border-radius: 50%;
+        background-color: transparent;
+        box-shadow: 8vmin 0 0 0 white, 14vmin 0 0 2vmin white,
+          20vmin 0 0 -1vmin white, 26vmin 0 0 1.5vmin white,
+          32vmin 0 0 -0.5vmin white;
+        -webkit-animation: splash 0.6s ease-in-out infinite alternate;
+        animation: splash 0.6s ease-in-out infinite alternate;
+      }
+
+      land {
+        width: 60vw;
+        height: 38vh;
+        top: 62vh;
+        left: 20vw;
+        border-radius: 8vw 12vw 0 0/14vh 18vh 0 0;
+        background-color: #001e2a;
+        box-shadow: 0 1vmin 0 0 #02456b inset;
+      }
+      land::before,
+      land::after {
+        width: 20vmin;
+        height: 18vmin;
+        z-index: -1;
+        transform: rotate(45deg);
+        background-color: #001e2a;
+        border-radius: 4vmin 0;
+        box-shadow: 0 1vmin 0 0 #02456b inset;
+      }
+      land::before {
+        top: -6vmin;
+        left: 12vmin;
+      }
+      land::after {
+        top: -8vmin;
+        left: 22vmin;
+      }
+
+      house {
+        width: 12vw;
+        height: 12vh;
+        top: 50vh;
+        left: 55vw;
+        background-color: #001e2a;
+      }
+      house::before {
+        width: 10vw;
+        height: 10vw;
+        top: -5vw;
+        left: 0.9vw;
+        z-index: -1;
+        transform: rotate(45deg);
+        background: #001e2a;
+        border-radius: 1vmin;
+        box-shadow: 1vmin 0 0 0 #02456b inset;
+      }
+      house::after {
+        width: 4vmin;
+        height: 4vmin;
+        top: 3vh;
+        left: calc(50% - 2vmin);
+        background-color: #fffbde;
+        box-shadow: 0 0 5vmin #fffbde, 0 0 3vmin #fffbde inset;
+        background-image: linear-gradient(
+            to right,
+            transparent calc(50% - 0.5vmin),
+            #001e2a calc(50% - 0.5vmin),
+            #001e2a calc(50% + 0.5vmin),
+            transparent calc(50% + 0.5vmin)
+          ),
+          linear-gradient(
+            to bottom,
+            transparent calc(50% - 0.5vmin),
+            #001e2a calc(50% - 0.5vmin),
+            #001e2a calc(50% + 0.5vmin),
+            transparent calc(50% + 0.5vmin)
+          );
+        -webkit-animation: window 1.2s ease-in-out alternate infinite;
+        animation: window 1.2s ease-in-out alternate infinite;
+      }
+
+      @-webkit-keyframes moon {
+        to {
+          box-shadow: 0 0 0 0.5vmin rgba(2, 44, 93, 0.3), 0 0 7vmin 2vmin white;
+        }
+      }
+
+      @keyframes moon {
+        to {
+          box-shadow: 0 0 0 0.5vmin rgba(2, 44, 93, 0.3), 0 0 7vmin 2vmin white;
+        }
+      }
+      @-webkit-keyframes waterfall {
+        to {
+          background-position: 50% 8vh;
+        }
+      }
+      @keyframes waterfall {
+        to {
+          background-position: 50% 8vh;
+        }
+      }
+      @-webkit-keyframes splash {
+        to {
+          box-shadow: 8vmin 0 0 2vmin white, 14vmin 0 0 0.5vmin white,
+            20vmin 0 0 3vmin white, 26vmin 0 0 0vmin white,
+            32vmin 0 0 1vmin white;
+        }
+      }
+      @keyframes splash {
+        to {
+          box-shadow: 8vmin 0 0 2vmin white, 14vmin 0 0 0.5vmin white,
+            20vmin 0 0 3vmin white, 26vmin 0 0 0vmin white,
+            32vmin 0 0 1vmin white;
+        }
+      }
+      @-webkit-keyframes window {
+        to {
+          box-shadow: 0 0 2vmin white, 0 0 3vmin white inset;
+        }
+      }
+      @keyframes window {
+        to {
+          box-shadow: 0 0 2vmin white, 0 0 3vmin white inset;
+        }
+      }
+    </style>
+    <style>
+      div.icon-back {
+      }
+      h1 {
+        font-family: Nunito;
+        font-size: 30px;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 300;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      table {
+        font-family: Nunito;
+        width: 100%;
+        table-layout: fixed;
+      }
+      .tbl-header {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+      .tbl-content {
+        height: 300px;
+        overflow-x: auto;
+        margin-top: 0px;
+        /* border: 1px solid rgba(255, 255, 255, 0.3); */
+      }
+      th {
+        padding: 20px 15px;
+        text-align: left;
+        font-weight: 500;
+        font-size: 12px;
+        color: #fff;
+        text-transform: uppercase;
+      }
+      td {
+        padding: 15px;
+        text-align: left;
+        vertical-align: middle;
+        font-weight: 400;
+        font-size: 12px;
+        color: #4e2bcc;
+        border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+      }
+
+      /* demo styles */
+
+      body {
+        background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+        background: linear-gradient(to right, #25c481, #25b7c4);
+      }
+      section {
+        margin: 50px;
+      }
+
+      /* for custom scrollbar for webkit browser*/
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      }
+      ::-webkit-scrollbar-thumb {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+
+  <body>
+    <moon></moon>
+    <land></land>
+    <house></house>
+    <waterfall></waterfall>
+
+    <section>
+      <div class="icon-back">
+        <a href="./index.html"> <span class="fa fa-reply"></span></a>
+      </div>
+      <!--for demo wrap-->
+      <h1>Lịch Sử Túc Số</h1>
+      <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <th>Ngày</th>
+              <th>Túc Số</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <script>
+              var mytime = localStorage.getItem("mytime") || {};
+              var data = JSON.parse(mytime);
+              console.log("data: ", data);
+              for (const [key, value] of Object.entries(data)) {
+                document.write(
+                  "<tr><td>" + key + "</td><td>" + value + "</td></tr>"
+                );
+              }
+            </script>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <script>
+      $(window)
+        .on("load resize ", function () {
+          var scrollWidth =
+            $(".tbl-content").width() - $(".tbl-content table").width();
+          $(".tbl-header").css({ "padding-right": scrollWidth });
+        })
+        .resize();
+    </script>
+  </body>
+</html>
